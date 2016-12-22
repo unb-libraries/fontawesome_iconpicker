@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains fontawesome_iconpicker.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function fontawesome_iconpicker_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the fontawesome_iconpicker module.
+    case 'help.page.fontawesome_iconpicker':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('D7 port of fontawesome_iconpicker') . '</p>';
+      return $output;
+
+    default:
+  }
+}

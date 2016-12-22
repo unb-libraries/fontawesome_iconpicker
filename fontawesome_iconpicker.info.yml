@@ -1,0 +1,5 @@
+name: FontAwesome Iconpicker
+type: module
+description: D7 port of fontawesome_iconpicker
+core: 8.x
+package: Custom

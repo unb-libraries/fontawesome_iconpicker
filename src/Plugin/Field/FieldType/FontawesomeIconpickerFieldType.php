@@ -15,7 +15,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *
  * @FieldType(
  *   id = "fontawesome_iconpicker_field_type",
- *   label = @Translation("Fontawesome iconpicker field type"),
+ *   label = @Translation("Font Awesome Icon Picker field"),
  *   description = @Translation("Provides a method for picking FontAwesome icons."),
  *   default_widget = "fontawesome_iconpicker_widget_type",
  *   default_formatter = "fontawesome_iconpicker_formatter_type"

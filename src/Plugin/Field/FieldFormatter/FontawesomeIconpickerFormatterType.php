@@ -13,7 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @FieldFormatter(
  *   id = "fontawesome_iconpicker_formatter_type",
- *   label = @Translation("Fontawesome iconpicker formatter type"),
+ *   label = @Translation("Font Awesome Icon Picker formatter"),
  *   field_types = {
  *     "fontawesome_iconpicker_field_type"
  *   }
@@ -27,6 +27,7 @@ class FontawesomeIconpickerFormatterType extends FormatterBase {
   public static function defaultSettings() {
     return [
       // Implement default settings.
+      'size' => '1x',
     ] + parent::defaultSettings();
   }
 
@@ -36,6 +37,19 @@ class FontawesomeIconpickerFormatterType extends FormatterBase {
   public function settingsForm(array $form, FormStateInterface $form_state) {
     return [
       // Implement settings form.
+      $form['size'] = [
+        '#type'           => 'select',
+        '#title'          => t('Icon Size'),
+        '#description'    => t('Select an icon size.'),
+        '#default_value'  => $this->getSetting('size'),
+        '#options'        => [
+          '1x'  => '1x',
+          '2x'  => '2x',
+          '3x'  => '3x',
+          '4x'  => '4x',
+          '5x'  => '5x',
+        ],
+      ]
     ] + parent::settingsForm($form, $form_state);
   }
 
@@ -43,8 +57,10 @@ class FontawesomeIconpickerFormatterType extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = [];
     // Implement settings summary.
+    $summary = t('Size: @size', [
+      '@size'     => $this->getSetting('size'),
+    ]);
 
     return $summary;
   }
@@ -56,7 +72,14 @@ class FontawesomeIconpickerFormatterType extends FormatterBase {
     $elements = [];
 
     foreach ($items as $delta => $item) {
-      $elements[$delta] = ['#markup' => $this->viewValue($item)];
+      $size = $this->getSetting('size');
+      $safe_value = $this->viewValue($item);
+
+      $elements[$delta] = [
+        '#theme' => 'fontawesome_iconpicker_formatter',
+        '#icon' => $safe_value,
+        '#size' => $size,
+      ];
     }
 
     return $elements;

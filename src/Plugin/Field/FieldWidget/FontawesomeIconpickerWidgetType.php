@@ -11,7 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @FieldWidget(
  *   id = "fontawesome_iconpicker_widget_type",
- *   label = @Translation("Fontawesome iconpicker widget type"),
+ *   label = @Translation("Font Awesome Icon Picker widget"),
  *   field_types = {
  *     "fontawesome_iconpicker_field_type"
  *   }
@@ -25,6 +25,7 @@ class FontawesomeIconpickerWidgetType extends WidgetBase {
   public static function defaultSettings() {
     return [
       'size' => 60,
+      'icon' => '',
       'placeholder' => '',
     ] + parent::defaultSettings();
   }
@@ -42,6 +43,29 @@ class FontawesomeIconpickerWidgetType extends WidgetBase {
       '#required' => TRUE,
       '#min' => 1,
     ];
+
+    $element['size'] = array(
+      '#type'           => 'select',
+      '#title'          => t('Icon Size'),
+      '#description'    => t('Select an icon size.'),
+      '#default_value'  => $settings['size'],
+      '#options'        => array(
+        '1x'  => '1x',
+        '2x'  => '2x',
+        '3x'  => '3x',
+        '4x'  => '4x',
+        '5x'  => '5x',
+      ),
+    );
+
+    $elements['icon'] = [
+      '#type' => 'fontawesome_iconpicker_field_type',
+      '#title' => t('Pick an icon'),
+      '#default_value' => $this->getSetting('icon'),
+      '#required' => TRUE,
+      '#min' => 1,
+    ];
+
     $elements['placeholder'] = [
       '#type' => 'textfield',
       '#title' => t('Placeholder'),
@@ -59,6 +83,10 @@ class FontawesomeIconpickerWidgetType extends WidgetBase {
     $summary = [];
 
     $summary[] = t('Textfield size: @size', ['@size' => $this->getSetting('size')]);
+    if (!empty($this->getSetting('icon'))) {
+      $summary[] = t('Icon: @icon', ['@icon' => $this->getSetting('icon')]);
+    }
+
     if (!empty($this->getSetting('placeholder'))) {
       $summary[] = t('Placeholder: @placeholder', ['@placeholder' => $this->getSetting('placeholder')]);
     }
@@ -74,6 +102,7 @@ class FontawesomeIconpickerWidgetType extends WidgetBase {
       '#type' => 'textfield',
       '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
       '#size' => $this->getSetting('size'),
+      '#icon' => $this->getSetting('icon'),
       '#placeholder' => $this->getSetting('placeholder'),
       '#maxlength' => $this->getFieldSetting('max_length'),
     ];

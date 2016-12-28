@@ -106,6 +106,13 @@ class FontawesomeIconpicker extends WidgetBase {
       '#icon' => $this->getSetting('icon'),
       '#placeholder' => $this->getSetting('placeholder'),
       '#maxlength' => $this->getFieldSetting('max_length'),
+      '#attributes' => [
+        'data-iconpicker' => '',
+        'class' => [
+          'fontawesome-iconpicker-element',
+        ],
+      ],
+      '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome-iconpicker']],
     ];
 
     return $element;

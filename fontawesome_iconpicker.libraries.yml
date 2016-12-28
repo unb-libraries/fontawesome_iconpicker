@@ -1,0 +1,15 @@
+fontawesome-iconpicker:
+  dependencies:
+    - fontawesome/fontawesome
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+  version: 1.2.2
+  css:
+    component:
+      /libraries/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css: {minified: true }
+
+  js:
+    /libraries/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.min.js: {minified: true }
+    js/fontawesome_iconpicker.js: {}

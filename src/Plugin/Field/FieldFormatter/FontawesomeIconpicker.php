@@ -9,17 +9,18 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Plugin implementation of the 'fontawesome_iconpicker_formatter_type' formatter.
+ * Plugin implementation of the 'fontawesome_iconpicker' formatter.
  *
  * @FieldFormatter(
  *   id = "fontawesome_iconpicker_formatter_type",
- *   label = @Translation("Font Awesome Icon Picker formatter"),
+ *   label = @Translation("Font Awesome Icon Picker"),
  *   field_types = {
- *     "fontawesome_iconpicker_field_type"
+ *     "text",
+ *     "string",
  *   }
  * )
  */
-class FontawesomeIconpickerFormatterType extends FormatterBase {
+class FontawesomeIconpicker extends FormatterBase {
 
   /**
    * {@inheritdoc}
@@ -57,8 +58,9 @@ class FontawesomeIconpickerFormatterType extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
+    $summary = array();
     // Implement settings summary.
-    $summary = t('Size: @size', [
+    $summary[] = t('Size: @size', [
       '@size'     => $this->getSetting('size'),
     ]);
 

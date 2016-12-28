@@ -7,17 +7,18 @@ use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Plugin implementation of the 'fontawesome_iconpicker_widget_type' widget.
+ * Plugin implementation of the 'fontawesome_iconpicker' widget.
  *
  * @FieldWidget(
- *   id = "fontawesome_iconpicker_widget_type",
- *   label = @Translation("Font Awesome Icon Picker widget"),
+ *   id = "fontawesome_iconpicker",
+ *   label = @Translation("Font Awesome Icon Picker"),
  *   field_types = {
- *     "fontawesome_iconpicker_field_type"
+ *     "text",
+ *     "string",
  *   }
  * )
  */
-class FontawesomeIconpickerWidgetType extends WidgetBase {
+class FontawesomeIconpicker extends WidgetBase {
 
   /**
    * {@inheritdoc}

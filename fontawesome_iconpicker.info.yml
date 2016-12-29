@@ -1,7 +1,5 @@
-name: Font Awesome Icon Picker
+name: Font Awesome Iconpicker
 type: module
-description: D7 port of fontawesome_iconpicker
+description: Icon picker field that uses the Font Awesome library.
 core: 8.x
 package: Custom
-dependencies:
-  - fontawesome

@@ -9,8 +9,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
 
 define('FONTAWESOME_ICONPICKER_LIBRARY', 'fontawesome-iconpicker');
 define('FONTAWESOME_ICONPICKER_NAME', 'Font Awesome Iconpicker');
-define('FONTAWESOME_ICONPICKER_URL', 'http://mjolnic.com/fontawesome-iconpicker/');
-define('FONTAWESOME_ICONPICKER_DOWNLOAD_URL', 'https://github.com/mjolnic/fontawesome-iconpicker/archive/1.0.0.zip');
+define('FONTAWESOME_ICONPICKER_URL', 'https://itsjavi.com/fontawesome-iconpicker/');
+define('FONTAWESOME_ICONPICKER_DOWNLOAD_URL', 'https://github.com/itsjavi/fontawesome-iconpicker/archive/1.2.2.tar.gz');
 
 
 /**
@@ -18,11 +18,11 @@ define('FONTAWESOME_ICONPICKER_DOWNLOAD_URL', 'https://github.com/mjolnic/fontaw
  */
 function fontawesome_iconpicker_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
-    // Main module help for the fontawesome_iconpicker module.
+    // Main module help.
     case 'help.page.fontawesome_iconpicker':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('D7 port of fontawesome_iconpicker') . '</p>';
+      $output .= '<p>' . t('Font Awesome Iconpicker.') . '</p>';
       return $output;
 
     default:

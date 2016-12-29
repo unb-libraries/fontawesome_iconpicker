@@ -10,5 +10,7 @@
     "issues": "https://www.drupal.org/project/issues/fontawesome_iconpicker",
     "source": "http://cgit.drupalcode.org/fontawesome_iconpicker"
   },
-  "require": { }
+  "require": {
+    "fortawesome/font-awesome": "^4.6"
+  }
 }

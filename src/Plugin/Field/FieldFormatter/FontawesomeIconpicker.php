@@ -36,22 +36,21 @@ class FontawesomeIconpicker extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return [
-      // Implement settings form.
-      $form['size'] = [
-        '#type'           => 'select',
-        '#title'          => t('Icon Size'),
-        '#description'    => t('Select an icon size.'),
-        '#default_value'  => $this->getSetting('size'),
-        '#options'        => [
-          '1x'  => '1x',
-          '2x'  => '2x',
-          '3x'  => '3x',
-          '4x'  => '4x',
-          '5x'  => '5x',
-        ],
-      ]
-    ] + parent::settingsForm($form, $form_state);
+   $elements = [];
+   $elements['size'] = [
+      '#type'           => 'select',
+      '#title'          => t('Icon Size'),
+      '#description'    => t('Select an icon size.'),
+      '#default_value'  => $this->getSetting('size'),
+      '#options'        => [
+        'fa-1x'  => '1x',
+        'fa-2x'  => '2x',
+        'fa-3x'  => '3x',
+        'fa-4x'  => '4x',
+        'fa-5x'  => '5x',
+      ],
+    ];
+    return $elements;
   }
 
   /**

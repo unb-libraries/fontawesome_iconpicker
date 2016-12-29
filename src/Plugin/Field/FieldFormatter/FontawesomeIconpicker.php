@@ -28,7 +28,7 @@ class FontawesomeIconpicker extends FormatterBase {
   public static function defaultSettings() {
     return [
       // Implement default settings.
-      'size' => '1x',
+      'size' => 'fa-1x',
     ] + parent::defaultSettings();
   }
 
@@ -42,13 +42,7 @@ class FontawesomeIconpicker extends FormatterBase {
       '#title'          => t('Icon Size'),
       '#description'    => t('Select an icon size.'),
       '#default_value'  => $this->getSetting('size'),
-      '#options'        => [
-        'fa-1x'  => '1x',
-        'fa-2x'  => '2x',
-        'fa-3x'  => '3x',
-        'fa-4x'  => '4x',
-        'fa-5x'  => '5x',
-      ],
+      '#options'        => $this->getFaIconSizes(),
     ];
     return $elements;
   }
@@ -60,7 +54,7 @@ class FontawesomeIconpicker extends FormatterBase {
     $summary = array();
     // Implement settings summary.
     $summary[] = t('Size: @size', [
-      '@size'     => $this->getSetting('size'),
+      '@size'     => $this->getFaIconSizeLabel($this->getSetting('size')),
     ]);
 
     return $summary;
@@ -99,6 +93,27 @@ class FontawesomeIconpicker extends FormatterBase {
     // The text value has no text format assigned to it, so the user input
     // should equal the output, including newlines.
     return nl2br(Html::escape($item->value));
+  }
+
+  /**
+   * Helper function to get list of supported sizes in fontawesome.
+   */
+  private function getFaIconSizes() {
+    return [
+      'fa-1x'  => '1x',
+      'fa-2x'  => '2x',
+      'fa-3x'  => '3x',
+      'fa-4x'  => '4x',
+      'fa-5x'  => '5x',
+    ];
+  }
+
+  /**
+   * Helper function to get default icon size.
+   */
+  private function getFaIconSizeLabel($key) {
+    $available_sizes = $this->getFaIconSizes();
+    return isset($available_sizes[$key]) ? $available_sizes[$key] : NULL;
   }
 
 }

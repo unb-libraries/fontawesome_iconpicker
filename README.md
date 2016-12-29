@@ -14,4 +14,7 @@ This is being worked on currently in the following issue: [Explore including fon
     - Font Awesome CSS: `docroot/libraries/font-awesome/css/font-awesome.min.css`
     - Iconpicker CSS: `docroot/libraries/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css`
 
-Install the module, and create a new field using the Font Awesome Iconpicker field type.
+## Usage
+Font Awesome Iconpicker can be used on `Text (formatted)` field or `Text (plain)` fields.
+After attaching either of the above fields to an entity, you would be able to use `Fontawesome Icon Picker` widget for those fields under *Manage form display* section.
+You would also have to visit *Manage display* and configure the field to use field formatter `Fontawesome Icon Picker`.

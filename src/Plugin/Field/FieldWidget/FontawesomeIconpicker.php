@@ -76,7 +76,8 @@ class FontawesomeIconpicker extends WidgetBase {
     $summary = [];
 
     if (!empty($this->getSetting('type'))) {
-      $summary[] = t('Type: @type', ['@type' => $this->getSetting('type')]);
+      $label = $this->getIconPickerTypes()[$this->getSetting('type')];
+      $summary[] = t('Type: @type', ['@type' => $label]);
     }
 
     if (!empty($this->getSetting('placeholder'))) {
@@ -146,8 +147,8 @@ class FontawesomeIconpicker extends WidgetBase {
   private function getIconPickerTypes() {
     return [
       'default' => $this->t('Default'),
-      'component' => $this->t('As a component'),
-      'input_search' => $this->t('With the input as a search box'),
+      'component' => $this->t('As a bootstrap component'),
+      'input_search' => $this->t('Input as a search box'),
       'dropdown' => $this->t('Inside dropdown (with Label and Icon)'),
       'dropdown_icon' => $this->t('Inside dropdown (with icon only)'),
     ];

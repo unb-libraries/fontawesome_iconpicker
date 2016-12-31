@@ -149,8 +149,8 @@ class FontawesomeIconpicker extends WidgetBase {
       'default' => $this->t('Default'),
       'component' => $this->t('As a bootstrap component'),
       'input_search' => $this->t('Input as a search box'),
-      'dropdown' => $this->t('Inside dropdown (with Label and Icon)'),
-      'dropdown_icon' => $this->t('Inside dropdown (with icon only)'),
+      // 'dropdown' => $this->t('Inside dropdown (with Label and Icon)'),
+      // 'dropdown_icon' => $this->t('Inside dropdown (with icon only)'),
     ];
   }
 

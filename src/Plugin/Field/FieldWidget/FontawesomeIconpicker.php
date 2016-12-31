@@ -26,8 +26,8 @@ class FontawesomeIconpicker extends WidgetBase {
   public static function defaultSettings() {
     return [
       'size' => 60,
-      'icon' => '',
       'placeholder' => '',
+      'type' => '',
     ] + parent::defaultSettings();
   }
 
@@ -37,12 +37,12 @@ class FontawesomeIconpicker extends WidgetBase {
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $elements = [];
 
-    $elements['size'] = [
-      '#type' => 'number',
-      '#title' => t('Size of textfield'),
-      '#default_value' => $this->getSetting('size'),
+    $elements['type'] = [
+      '#type' => 'select',
+      '#title' => t('Type of Icon Picker'),
+      '#default_value' => $this->getSetting('type'),
       '#required' => TRUE,
-      '#min' => 1,
+      '#options' => $this->getIconPickerTypes(),
     ];
 
     $element['size'] = array(
@@ -59,13 +59,6 @@ class FontawesomeIconpicker extends WidgetBase {
       ),
     );
 
-    $elements['icon'] = [
-      '#type' => 'fontawesome_iconpicker_field_type',
-      '#title' => t('Pick an icon'),
-      '#default_value' => $this->getSetting('icon'),
-      '#required' => TRUE,
-      '#min' => 1,
-    ];
 
     $elements['placeholder'] = [
       '#type' => 'textfield',
@@ -83,9 +76,8 @@ class FontawesomeIconpicker extends WidgetBase {
   public function settingsSummary() {
     $summary = [];
 
-    $summary[] = t('Textfield size: @size', ['@size' => $this->getSetting('size')]);
-    if (!empty($this->getSetting('icon'))) {
-      $summary[] = t('Icon: @icon', ['@icon' => $this->getSetting('icon')]);
+    if (!empty($this->getSetting('type'))) {
+      $summary[] = t('Type: @type', ['@type' => $this->getSetting('type')]);
     }
 
     if (!empty($this->getSetting('placeholder'))) {
@@ -99,23 +91,52 @@ class FontawesomeIconpicker extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element['value'] = $element + [
-      '#type' => 'textfield',
-      '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
-      '#size' => $this->getSetting('size'),
-      '#icon' => $this->getSetting('icon'),
-      '#placeholder' => $this->getSetting('placeholder'),
-      '#maxlength' => $this->getFieldSetting('max_length'),
-      '#attributes' => [
-        'data-iconpicker' => '',
-        'class' => [
-          'fontawesome-iconpicker-element',
-        ],
-      ],
-      '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome-iconpicker']],
-    ];
+    switch ($type) {
+      case 'component':
+
+        break;
+
+      case 'dropdown':
+      case 'dropdown_icon':
+
+        break;
+
+      case 'default':
+      case 'input_search':
+      default:
+        $element['value'] = $element + [
+          '#type' => 'textfield',
+          '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
+          '#size' => $this->getSetting('size'),
+          '#icon' => $this->getSetting('icon'),
+          '#placeholder' => $this->getSetting('placeholder'),
+          '#maxlength' => $this->getFieldSetting('max_length'),
+          '#attributes' => [
+            'data-input-search' => $this->getSetting('type') == 'input_search' ? 'true' : 'false',
+            'data-iconpicker' => '',
+            'class' => [
+              'fontawesome-iconpicker-element',
+            ],
+          ],
+          '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome-iconpicker']],
+        ];
+        break;
+    }
 
     return $element;
+  }
+
+  /**
+   * Get Supported Icon Picker Types.
+   */
+  private function getIconPickerTypes() {
+    return [
+      'default' => $this->t('Default'),
+      'component' => $this->t('As a component'),
+      'input_search' => $this->t('With the input as a search box'),
+      'dropdown' => $this->t('Inside dropdown (with Label and Icon)'),
+      'dropdown_icon' => $this->t('Inside dropdown (with icon only)'),
+    ];
   }
 
 }

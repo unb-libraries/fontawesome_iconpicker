@@ -59,7 +59,6 @@ class FontawesomeIconpicker extends WidgetBase {
       ),
     );
 
-
     $elements['placeholder'] = [
       '#type' => 'textfield',
       '#title' => t('Placeholder'),
@@ -91,14 +90,29 @@ class FontawesomeIconpicker extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
+    $type = $this->getSetting('type');
     switch ($type) {
       case 'component':
-
-        break;
-
-      case 'dropdown':
-      case 'dropdown_icon':
-
+        // @todo Figure out a way to use template for widget rendering, instead
+        // of DOM manipulation in fontawesome_iconpicker.js.
+        $element['value'] = $element + [
+          '#type' => 'textfield',
+          '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
+          '#size' => $this->getSetting('size'),
+          '#icon' => $this->getSetting('icon'),
+          '#placeholder' => $this->getSetting('placeholder'),
+          '#maxlength' => $this->getFieldSetting('max_length'),
+          '#attributes' => [
+            'data-iconpicker' => '',
+            'data-placement' => 'bottomRight',
+            'class' => [
+              'fontawesome-iconpicker-element',
+              'form-control',
+              'js-fontawesome-iconpicker-is-component',
+            ],
+          ],
+          '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome-iconpicker']],
+        ];
         break;
 
       case 'default':
@@ -112,7 +126,7 @@ class FontawesomeIconpicker extends WidgetBase {
           '#placeholder' => $this->getSetting('placeholder'),
           '#maxlength' => $this->getFieldSetting('max_length'),
           '#attributes' => [
-            'data-input-search' => $this->getSetting('type') == 'input_search' ? 'true' : 'false',
+            'data-input-search' => ($type == 'input_search') ? 'true' : 'false',
             'data-iconpicker' => '',
             'class' => [
               'fontawesome-iconpicker-element',

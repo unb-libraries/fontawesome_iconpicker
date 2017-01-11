@@ -74,6 +74,7 @@ class FontawesomeIconpicker extends FormatterBase {
         '#theme' => 'fontawesome_iconpicker_formatter',
         '#icon' => $safe_value,
         '#size' => $size,
+        '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome']],
       ];
     }
 

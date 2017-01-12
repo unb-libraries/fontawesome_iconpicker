@@ -11,7 +11,7 @@ This is being worked on currently in the following issue: [Explore including fon
   1. Download the [Font Awesome](http://fontawesome.io) library, and place it in a `libraries` folder in your site's docroot.
   2. Download the [Font Awesome Iconpicker](https://itsjavi.com/fontawesome-iconpicker/) library, and place it in a `libraries` folder in your site's docroot.
   3. After downloading and moving the files, you should see files in the following paths:
-    - Font Awesome CSS: `docroot/libraries/font-awesome/css/font-awesome.min.css`
+    - Font Awesome CSS: `docroot/libraries/fontawesome/css/font-awesome.min.css`
     - Iconpicker CSS: `docroot/libraries/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.min.css`
 
 ## Usage

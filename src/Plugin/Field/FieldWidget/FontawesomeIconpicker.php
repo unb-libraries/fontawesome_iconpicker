@@ -45,18 +45,13 @@ class FontawesomeIconpicker extends WidgetBase {
       '#options' => $this->getIconPickerTypes(),
     ];
 
-    $element['size'] = array(
-      '#type'           => 'select',
-      '#title'          => t('Icon Size'),
-      '#description'    => t('Select an icon size.'),
-      '#default_value'  => $settings['size'],
-      '#options'        => array(
-        '1x'  => '1x',
-        '2x'  => '2x',
-        '3x'  => '3x',
-        '4x'  => '4x',
-        '5x'  => '5x',
-      ),
+    $elements['size'] = array(
+      '#type' => 'number',
+      '#min' => 0,
+      '#step' => 1,
+      '#title' => t('Field Size'),
+      '#description' => t('Select a field size.'),
+      '#default_value' => $this->getSetting('size'),
     );
 
     $elements['placeholder'] = [
@@ -82,6 +77,10 @@ class FontawesomeIconpicker extends WidgetBase {
 
     if (!empty($this->getSetting('placeholder'))) {
       $summary[] = t('Placeholder: @placeholder', ['@placeholder' => $this->getSetting('placeholder')]);
+    }
+    
+    if (!empty($this->getSetting('size'))) {
+      $summary[] = t('Field size: @size', ['@size' => $this->getSetting('size')]);
     }
 
     return $summary;

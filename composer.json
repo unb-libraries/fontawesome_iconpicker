@@ -14,7 +14,7 @@
   },
   "require": {
     "fortawesome/font-awesome": "^4.6",
-    "fortawesome/fontawesome-iconpicker": "^1.3"
+    "farbelous/fontawesome-iconpicker": "^1.3"
   },
   "repositories": {
     "font-awesome": {

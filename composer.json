@@ -16,8 +16,8 @@
     "fortawesome/font-awesome": "^4.6",
     "farbelous/fontawesome-iconpicker": "^1.3"
   },
-  "repositories": {
-    "font-awesome": {
+  "repositories": [
+    {
       "type": "package",
       "package": {
         "name": "fortawesome/font-awesome",
@@ -35,7 +35,7 @@
         }
       }
     },
-    "fontawesome-iconpicker": {
+    {
       "type": "package",
       "package": {
         "name": "farbelous/fontawesome-iconpicker",
@@ -53,5 +53,5 @@
         }
       }
     }
-  }
+  ]
 }

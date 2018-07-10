@@ -65,7 +65,7 @@ function fontawesome_iconpicker_libraries_info() {
       ),
     ),
     'dependencies' => array(
-      'fontawesome',
+      'fontawesome-iconpicker',
     ),
     'variants' => array(
       'minified' => array(

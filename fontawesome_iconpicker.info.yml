@@ -2,4 +2,5 @@ name: Font Awesome Iconpicker
 type: module
 description: Icon picker field that uses the Font Awesome library.
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Custom

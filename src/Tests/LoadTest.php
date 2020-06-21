@@ -3,14 +3,19 @@
 namespace Drupal\fontawesome_iconpicker\Tests;
 
 use Drupal\Core\Url;
-use Drupal\simpletest\WebTestBase;
+use Drupal\Tests\BrowserTestBase;
 
 /**
  * Simple test to ensure that main page loads with module enabled.
  *
  * @group fontawesome_iconpicker
  */
-class LoadTest extends WebTestBase{
+class LoadTest extends BrowserTestBase {
+
+  /**
+   * {@inheritDoc}
+   */
+  protected $defaultTheme = 'stark';
 
   /**
    * Modules to enable.

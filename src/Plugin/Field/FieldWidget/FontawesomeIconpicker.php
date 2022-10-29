@@ -39,26 +39,26 @@ class FontawesomeIconpicker extends WidgetBase {
 
     $elements['type'] = [
       '#type' => 'select',
-      '#title' => t('Type of Icon Picker'),
+      '#title' => $this->t('Type of Icon Picker'),
       '#default_value' => $this->getSetting('type'),
       '#required' => TRUE,
       '#options' => $this->getIconPickerTypes(),
     ];
 
-    $elements['size'] = array(
+    $elements['size'] = [
       '#type' => 'number',
       '#min' => 0,
       '#step' => 1,
-      '#title' => t('Field Size'),
-      '#description' => t('Select a field size.'),
+      '#title' => $this->t('Field Size'),
+      '#description' => $this->t('Select a field size.'),
       '#default_value' => $this->getSetting('size'),
-    );
+    ];
 
     $elements['placeholder'] = [
       '#type' => 'textfield',
-      '#title' => t('Placeholder'),
+      '#title' => $this->t('Placeholder'),
       '#default_value' => $this->getSetting('placeholder'),
-      '#description' => t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
+      '#description' => $this->t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
     ];
 
     return $elements;
@@ -72,15 +72,15 @@ class FontawesomeIconpicker extends WidgetBase {
 
     if (!empty($this->getSetting('type'))) {
       $label = $this->getIconPickerTypes()[$this->getSetting('type')];
-      $summary[] = t('Type: @type', ['@type' => $label]);
+      $summary[] = $this->t('Type: @type', ['@type' => $label]);
     }
 
     if (!empty($this->getSetting('placeholder'))) {
-      $summary[] = t('Placeholder: @placeholder', ['@placeholder' => $this->getSetting('placeholder')]);
+      $summary[] = $this->t('Placeholder: @placeholder', ['@placeholder' => $this->getSetting('placeholder')]);
     }
-    
+
     if (!empty($this->getSetting('size'))) {
-      $summary[] = t('Field size: @size', ['@size' => $this->getSetting('size')]);
+      $summary[] = $this->t('Field size: @size', ['@size' => $this->getSetting('size')]);
     }
 
     return $summary;
@@ -91,52 +91,44 @@ class FontawesomeIconpicker extends WidgetBase {
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $type = $this->getSetting('type');
-    switch ($type) {
-      case 'component':
-        // @todo Figure out a way to use template for widget rendering, instead
-        // of DOM manipulation in fontawesome_iconpicker.js.
-        $element['value'] = $element + [
-          '#type' => 'textfield',
-          '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
-          '#size' => $this->getSetting('size'),
-          '#icon' => $this->getSetting('icon'),
-          '#placeholder' => $this->getSetting('placeholder'),
-          '#maxlength' => $this->getFieldSetting('max_length'),
-          '#attributes' => [
-            'data-iconpicker' => '',
-            'data-placement' => 'bottomRight',
-            'class' => [
-              'fontawesome-iconpicker-element',
-              'form-control',
-              'js-fontawesome-iconpicker-is-component',
-            ],
-          ],
-          '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome-iconpicker']],
-        ];
-        break;
-
-      case 'default':
-      case 'input_search':
-      default:
-        $element['value'] = $element + [
-          '#type' => 'textfield',
-          '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
-          '#size' => $this->getSetting('size'),
-          '#icon' => $this->getSetting('icon'),
-          '#placeholder' => $this->getSetting('placeholder'),
-          '#maxlength' => $this->getFieldSetting('max_length'),
-          '#attributes' => [
-            'data-input-search' => ($type == 'input_search') ? 'true' : 'false',
-            'data-iconpicker' => '',
-            'class' => [
-              'fontawesome-iconpicker-element',
-            ],
-          ],
-          '#attached' => ['library' => ['fontawesome_iconpicker/fontawesome-iconpicker']],
-        ];
-        break;
+    $option = [
+      'theme' => 'default',
+      'iconSource' => [
+        "FontAwesome Solid 5",
+        "FontAwesome Regular 5",
+      ],
+      'closeOnSelect' => TRUE,
+      'i18n' => [
+        'input:placeholder' => $this->t('Search icon…'),
+        'text:title' => $this->t('Select icon'),
+        'text:empty' => $this->t('No results found…'),
+        'btn:save' => $this->t('Save'),
+      ],
+    ];
+    $element['value'] = $element + [
+      '#type' => 'textfield',
+      '#default_value' => $items[$delta]->value ?? NULL,
+      '#size' => $this->getSetting('size'),
+      '#icon' => $this->getSetting('icon'),
+      '#placeholder' => $this->getSetting('placeholder'),
+      '#maxlength' => $this->getFieldSetting('max_length'),
+      '#attributes' => [
+        'data-theme' => 'default',
+        'class' => [
+          'fontawesomeIconPickerVanillaIconPicker',
+        ],
+      ],
+      '#attached' => [
+        'library' => [
+          'fontawesome_iconpicker/vanilla-icon-picker',
+        ],
+      ],
+    ];
+    if ($type == 'component') {
+      $option['theme'] = 'bootstrap';
+      $element['value']['#attached']['library'][] = 'fontawesome_iconpicker/vanilla-icon-picker-theme-bootstrap';
     }
-
+    $element['value']['#attributes']['data-option'] = \json_encode($option);
     return $element;
   }
 
@@ -147,7 +139,7 @@ class FontawesomeIconpicker extends WidgetBase {
     return [
       'default' => $this->t('Default'),
       'component' => $this->t('As a bootstrap component'),
-      'input_search' => $this->t('Input as a search box'),
+      // 'input_search' => $this->t('Input as a search box'),
       // 'dropdown' => $this->t('Inside dropdown (with Label and Icon)'),
       // 'dropdown_icon' => $this->t('Inside dropdown (with icon only)'),
     ];

@@ -11,8 +11,7 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-The Font Awesome Iconpicker module Integrates the Font Awesome Iconpicker with
-Drupal.
+This module Integrates the Font Awesome Iconpicker with Drupal.
 
  * For a full description of the module visit:
    https://www.drupal.org/project/fontawesome_iconpicker
@@ -27,21 +26,20 @@ REQUIREMENTS
 This module requires the following libraries:
 
  * Font Awesome Library - http://fontawesome.io
- * Font Awesome Iconpicker Library - https://itsjavi.com/fontawesome-iconpicker
-
-Download the libraries and place them in the libraries folder.
-After downloading and moving the files, you should see files in the following paths:
-    - Font Awesome CSS - docroot/libraries/fontawesome/css/font-awesome.min.css
-    - Iconpicker CSS -
-      docroot/libraries/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.
-      min.css
-
+ * Vanilla icon picker Library - https://github.com/AppoloDev/vanilla-icon-picker
 
 INSTALLATION
 ------------
 
-Install the Font Awesome Iconpicker module as you would normally install a contributed Drupal module. Visit https://www.drupal.org/node/1897420 for further information.
+## Composer Installaion
 
+1. Adjust your root composer.json to include vanilla-icon-picker library as shown in the highlighted section of this gist https://gist.github.com/d34dman/a4b480a3471afc86a7951aadc7a42dd1#file-composer-json-L16-L27
+2. Make sure you have `druapl-library` installer path configured to point to your libraries folder. For this you would need `composer/installers` plugin and configure your composer.json as shown in the highlighted section here https://gist.github.com/d34dman/a4b480a3471afc86a7951aadc7a42dd1#file-composer-json-L67-L69
+3. Run `composer require drupal/fontawesome_iconpicker ^3`
+4. The above Add the Drupal module and the vanilla-icon-picker library in the correct location.
+
+Install the Font Awesome Iconpicker module as you would normally install a contributed Drupal module.
+Visit https://www.drupal.org/node/1897420 for further information.
 
 CONFIGURATION
 -------------
@@ -59,7 +57,6 @@ CONFIGURATION
 MAINTAINERS
 -----------
 
- * Chris Weber (cosmicdreams) - https://www.drupal.org/u/cosmicdreams
  * Shibin Das (D34dMan) - https://www.drupal.org/u/d34dman
 
 Supporting organizations:

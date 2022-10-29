@@ -36,11 +36,11 @@ class FontawesomeIconpicker extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-   $elements = [];
-   $elements['size'] = [
+    $elements = [];
+    $elements['size'] = [
       '#type'           => 'select',
-      '#title'          => t('Icon Size'),
-      '#description'    => t('Select an icon size.'),
+      '#title'          => $this->t('Icon Size'),
+      '#description'    => $this->t('Select an icon size.'),
       '#default_value'  => $this->getSetting('size'),
       '#options'        => $this->getFaIconSizes(),
     ];
@@ -51,9 +51,9 @@ class FontawesomeIconpicker extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $summary = array();
+    $summary = [];
     // Implement settings summary.
-    $summary[] = t('Size: @size', [
+    $summary[] = $this->t('Size: @size', [
       '@size'     => $this->getFaIconSizeLabel($this->getSetting('size')),
     ]);
 
@@ -93,7 +93,7 @@ class FontawesomeIconpicker extends FormatterBase {
   protected function viewValue(FieldItemInterface $item) {
     // The text value has no text format assigned to it, so the user input
     // should equal the output, including newlines.
-    return nl2br(Html::escape($item->value));
+    return nl2br(Html::escape($item->get('value')->getString()));
   }
 
   /**
@@ -114,7 +114,7 @@ class FontawesomeIconpicker extends FormatterBase {
    */
   private function getFaIconSizeLabel($key) {
     $available_sizes = $this->getFaIconSizes();
-    return isset($available_sizes[$key]) ? $available_sizes[$key] : NULL;
+    return $available_sizes[$key] ?? NULL;
   }
 
 }

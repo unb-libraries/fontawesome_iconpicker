@@ -14,13 +14,13 @@
   },
   "require": {
     "composer/installers": "^1.9",
-    "AppoloDev/vanilla-icon-picker": "^1.3"
+    "appolodev/vanilla-icon-picker": "^1.1"
   },
   "repositories": [
     {
       "type": "package",
       "package": {
-          "name": "AppoloDev/vanilla-icon-picker",
+          "name": "appolodev/vanilla-icon-picker",
           "version": "v1.1.3",
           "type": "drupal-library",
           "dist": {

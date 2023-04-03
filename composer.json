@@ -13,7 +13,7 @@
     "source": "http://cgit.drupalcode.org/fontawesome_iconpicker"
   },
   "require": {
-    "composer/installers": "^1.9",
+    "composer/installers": "^2",
     "appolodev/vanilla-icon-picker": "^1.1"
   },
   "repositories": [
